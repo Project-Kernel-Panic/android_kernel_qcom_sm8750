@@ -1,0 +1,44 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2026, Jiro <ktgithub28@gmail.com>
+ *
+ * Qualcomm SM7325 (Yupik) SoC device tree
+ */
+
+#include "sc7280.dtsi"
+
+/ {
+	compatible = "qcom,sm7325", "qcom,sc7280";
+
+	/*
+	 * Samsung SBOOT / ABL Bootloader constraint:
+	 * mem-offline MUST NOT be deleted or moved. Samsung ABL parses this node
+	 * and mailbox to negotiate RAM partitions with AOP. If deleted, DTBO
+	 * phandles shift, triggering an EDTBO check fail and forcing Odin Download Mode.
+	 */
+	mem-offline {
+		compatible = "qcom,mem-offline";
+		offline-sizes = <0x1 0x40000000 0x0 0x40000000>,
+				<0x1 0xc0000000 0x0 0x80000000>,
+				<0x2 0xc0000000 0x1 0x40000000>;
+		granule = <512>;
+		mboxes = <&aoss_qmp 0>;
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		mpss_mem: memory@8b800000 {
+			reg = <0x0 0x8b800000 0x0 0x9600000>;
+			no-map;
+		};
+
+		wpss_mem: memory@9ae00000 {
+			reg = <0x0 0x9ae00000 0x0 0x800000>;
+			no-map;
+		};
+	};
+};

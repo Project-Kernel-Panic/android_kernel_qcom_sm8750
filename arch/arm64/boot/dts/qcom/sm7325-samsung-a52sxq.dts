@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: BSD-3-Clause
+/*
+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2026, Jiro <ktgithub28@gmail.com>
+ *
+ * Device Tree for Samsung Galaxy A52s 5G (SM-A528B / a52sxq)
+ */
+
+/dts-v1/;
+
+#include "sm7325.dtsi"
+#include "pm7325.dtsi"
+#include "pm8350.dtsi"
+#include "pm8350b.dtsi"
+#include "pm8350c.dtsi"
+
+/ {
+	model = "Samsung Galaxy A52s 5G";
+	compatible = "samsung,a52sxq", "qcom,sm7325", "qcom,sc7280";
+	qcom,msm-id = <443 0x10000>, <443 0x20000>;
+	qcom,board-id = <0 0>;
+
+	chosen {
+		bootargs = "console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x99c000";
+		stdout-path = "serial0:115200n8";
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/* Samsung SBOOT persistent RAM oops/panic logger */
+		ramoops@f0b00000 {
+			compatible = "ramoops";
+			reg = <0x0 0xf0b00000 0x0 0x100000>;
+			record-size = <0x40000>;
+			console-size = <0x40000>;
+			ftrace-size = <0x40000>;
+			pmsg-size = <0x40000>;
+		};
+	};
+};
