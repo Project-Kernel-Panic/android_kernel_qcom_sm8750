@@ -561,6 +561,8 @@ static const struct of_device_id rpmhpd_match_table[] = {
 	{ .compatible = "qcom,sa8775p-rpmhpd", .data = &sa8775p_desc },
 	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
 	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
+	{ .compatible = "qcom,yupik-rpmhpd", .data = &sc7280_desc },
+	{ .compatible = "qcom,sm7325-rpmhpd", .data = &sc7280_desc },
 	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
 	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
 	{ .compatible = "qcom,sdm670-rpmhpd", .data = &sdm670_desc },
