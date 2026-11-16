@@ -247,3 +247,40 @@
 	vccq-supply = <&vreg_l9b_1p2>;
 	vccq-max-microamp = <900000>;
 };
+
+&tlmm {
+	ts_int_active: ts-int-active-state {
+		pins = "gpio81";
+		function = "gpio";
+		input-enable;
+		bias-disable;
+	};
+
+	ts_int_suspend: ts-int-suspend-state {
+		pins = "gpio81";
+		function = "gpio";
+		input-enable;
+		bias-pull-down;
+	};
+};
+
+&i2c13 {
+	status = "okay";
+
+	touchscreen@49 {
+		compatible = "stm,stm_ts";
+		reg = <0x49>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-names = "on_state", "off_state";
+		pinctrl-0 = <&ts_int_active>;
+		pinctrl-1 = <&ts_int_suspend>;
+		tsp_avdd_ldo-supply = <&vreg_l7c_3p0>;
+		tsp_io_ldo-supply = <&vreg_l18b_1p8>;
+		sec,irq_gpio = <&tlmm 81 GPIO_ACTIVE_LOW>;
+		sec,project_name = "a52sxq", "a52sxq";
+		sec,firmware_name = "tsp_stm/fts5cu56a_a52sxq.bin";
+		status = "okay";
+	};
+};
+
