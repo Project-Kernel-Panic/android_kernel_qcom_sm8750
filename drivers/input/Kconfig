@@ -214,5 +214,9 @@ source "drivers/input/gameport/Kconfig"
 
 endmenu
 
+source "drivers/input/sec_input/Kconfig"
+source "drivers/input/sec_input/stm/Kconfig"
+
 endmenu
+
 
