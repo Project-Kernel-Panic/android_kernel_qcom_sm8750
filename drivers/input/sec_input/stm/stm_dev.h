@@ -48,7 +48,7 @@
 #include <linux/kobject.h>
 #include <linux/sort.h>
 
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 #include <linux/gunyah/gh_msgq.h>
 #include <linux/gunyah/gh_rm_drv.h>
 #include <linux/gunyah/gh_irq_lend.h>
@@ -534,7 +534,7 @@ struct stm_ts_data {
 	struct completion secure_powerdown;
 	struct completion secure_interrupt;
 
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	struct trusted_touch_vm_info *vm_info;
 	struct mutex clk_io_ctrl_mutex;
 	struct mutex transition_lock;
@@ -590,7 +590,7 @@ struct stm_ts_data {
 	struct delayed_work work_read_info;
 	struct delayed_work debug_work;
 	struct delayed_work check_rawdata;
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	struct delayed_work close_work;
 #endif
 
@@ -818,7 +818,7 @@ void  stm_ts_rawdata_buffer_remove(struct stm_ts_data *ts);
 #endif
 
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 #if !IS_ENABLED(CONFIG_ARCH_QTI_VM)
 void stm_ts_trusted_touch_tvm_i2c_failure_report(struct stm_ts_data *ts);
 #endif

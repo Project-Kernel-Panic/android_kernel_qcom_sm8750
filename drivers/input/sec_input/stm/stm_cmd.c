@@ -1790,7 +1790,7 @@ static void fw_update(void *device_data)
 		return;
 
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled)) {
 		input_info(true, &ts->client->dev, "%s trusted touch is enabled. skip\n", __func__);
 		snprintf(buff, sizeof(buff), "%s", "NG");
@@ -5911,7 +5911,7 @@ static void fod_enable(void *device_data)
 			ts->plat_data->lowpower_mode);
 
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled)) {
 		input_info(true, &ts->client->dev, "%s trusted touch is enabled. skip\n", __func__);
 		snprintf(buff, sizeof(buff), "OK");
@@ -6413,7 +6413,7 @@ static void low_sensitivity_mode_enable(void *device_data)
 	sec_cmd_set_default_result(sec);
 
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled)) {
 		input_info(true, &ts->client->dev, "%s trusted touch is enabled. skip\n", __func__);
 		snprintf(buff, sizeof(buff), "NG");

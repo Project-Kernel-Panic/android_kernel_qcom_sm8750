@@ -240,7 +240,7 @@ int stm_ts_read_from_sponge(struct stm_ts_data *ts, u8 *data, int length)
 		input_err(true, &ts->client->dev, "%s: TUI is enabled\n", __func__);
 		return -EBUSY;
 	}
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled) != 0) {
 		input_err(true, &ts->client->dev, "%s: TVM is enabled\n", __func__);
 		return -EBUSY;
@@ -412,7 +412,7 @@ int stm_ts_write_to_sponge(struct stm_ts_data *ts, u8 *data, int length)
 		input_err(true, &ts->client->dev, "%s: TUI is enabled\n", __func__);
 		return -EBUSY;
 	}
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled) != 0) {
 		input_err(true, &ts->client->dev, "%s: TVM is enabled\n", __func__);
 		return -EBUSY;
@@ -683,7 +683,7 @@ int stm_ts_spi_write(struct stm_ts_data *ts, u8 *reg, int tlen, u8 *data, int le
 		input_err(true, &ts->client->dev, "%s: TUI is enabled\n", __func__);
 		return -EBUSY;
 	}
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled) != 0) {
 		input_err(true, &ts->client->dev, "%s: TVM is enabled\n", __func__);
 		return -EBUSY;
@@ -729,7 +729,7 @@ int stm_ts_spi_read(struct stm_ts_data *ts, u8 *reg, int tlen, u8 *buf, int rlen
 		input_err(true, &ts->client->dev, "%s: TUI is enabled\n", __func__);
 		return -EBUSY;
 	}
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled) != 0) {
 		input_err(true, &ts->client->dev, "%s: TVM is enabled\n", __func__);
 		return -EBUSY;

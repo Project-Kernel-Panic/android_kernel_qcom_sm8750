@@ -16,7 +16,7 @@
 struct stm_ts_data *g_ts;
 
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 #define gh_rm_get_vmid ghd_rm_get_vmid
 #define gh_rm_mem_reclaim ghd_rm_mem_reclaim
 #define gh_rm_mem_lend ghd_rm_mem_lend
@@ -1440,7 +1440,7 @@ static ssize_t fod_pressed_show(struct device *dev,
 	return snprintf(buf, PAGE_SIZE, "%u\n", ts->fod_pressed);
 }
 
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 static DEVICE_ATTR_RW(trusted_touch_enable);
 static DEVICE_ATTR_RW(trusted_touch_event);
 static DEVICE_ATTR_RO(trusted_touch_type);
@@ -1450,7 +1450,7 @@ static DEVICE_ATTR_RO(fod_pressed);
 static DEVICE_ATTR_RO(secure_touch);
 static DEVICE_ATTR_RO(secure_ownership);
 static struct attribute *secure_attr[] = {
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	&dev_attr_trusted_touch_enable.attr,
 	&dev_attr_trusted_touch_event.attr,
 	&dev_attr_trusted_touch_type.attr,
@@ -2197,7 +2197,7 @@ int stm_ts_input_open(struct input_dev *dev)
 		return 0;
 	}
 	cancel_delayed_work_sync(&ts->work_read_info);
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	cancel_delayed_work_sync(&ts->close_work);
 #endif
 
@@ -2282,7 +2282,7 @@ retry_fodmode:
 	return 0;
 }
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 void stm_ts_close_work(struct work_struct *work)
 {
 	struct stm_ts_data *ts = container_of(work, struct stm_ts_data, close_work.work);
@@ -2373,7 +2373,7 @@ void stm_ts_input_close(struct input_dev *dev)
 	sec_input_print_info(&ts->client->dev, ts->tdata);
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
 	secure_touch_stop(ts, 1);
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	if (atomic_read(&ts->trusted_touch_enabled)) {
 		input_info(true, &ts->client->dev, "%s wait for disabling trusted touch\n", __func__);
 		schedule_work(&ts->close_work.work);
@@ -2673,7 +2673,7 @@ static int stm_ts_init(struct stm_ts_data *ts)
 	INIT_DELAYED_WORK(&ts->plat_data->interrupt_notify_work, stm_ts_interrupt_notify);
 #endif
 #if IS_ENABLED(CONFIG_INPUT_SEC_SECURE_TOUCH)
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	INIT_DELAYED_WORK(&ts->close_work, stm_ts_close_work);
 #endif
 #endif
@@ -2718,7 +2718,7 @@ static int stm_ts_init(struct stm_ts_data *ts)
 
 	sec_secure_touch_register(ts, ts->plat_data->ss_touch_num, &ts->plat_data->input_dev->dev.kobj);
 
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	stm_ts_trusted_touch_init(ts);
 	mutex_init(&ts->clk_io_ctrl_mutex);
 	mutex_init(&ts->transition_lock);
@@ -2767,7 +2767,7 @@ void stm_ts_release(struct stm_ts_data *ts)
 	cancel_delayed_work_sync(&ts->plat_data->interrupt_notify_work);
 #endif
 	cancel_delayed_work_sync(&ts->switching_work);
-#if IS_ENABLED(CONFIG_GH_RM_DRV)
+#if IS_BUILTIN(CONFIG_GH_RM_DRV)
 	cancel_delayed_work_sync(&ts->close_work);
 #endif
 	flush_delayed_work(&ts->reset_work);
