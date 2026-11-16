@@ -1495,6 +1495,8 @@ static int sc7280_pinctrl_probe(struct platform_device *pdev)
 
 static const struct of_device_id sc7280_pinctrl_of_match[] = {
 	{ .compatible = "qcom,sc7280-pinctrl", },
+	{ .compatible = "qcom,yupik-pinctrl", },
+	{ .compatible = "qcom,sm7325-pinctrl", },
 	{ },
 };
 
