@@ -149,6 +149,7 @@ obj-$(CONFIG_SM_GCC_SUN) += gcc-sun.o
 obj-$(CONFIG_SM_GCC_8550) += gcc-sm8550.o
 obj-$(CONFIG_SM_GCC_KERA) += gcc-kera.o
 obj-$(CONFIG_SM_GCC_PARROT) += gcc-parrot.o
+obj-$(CONFIG_SM_GCC_YUPIK) += gcc-yupik.o
 obj-$(CONFIG_SM_GCC_PINEAPPLE) += gcc-pineapple.o
 obj-$(CONFIG_SM_GCC_TUNA) += gcc-tuna.o
 obj-$(CONFIG_SM_GCC_WAIPIO) += gcc-waipio.o
