@@ -40,7 +40,7 @@ TRACE_EVENT(i3c_log_info,
 
 /* This part must be outside protection */
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../../drivers/i3c/master
 #define TRACE_INCLUDE_FILE i3c-qup-trace
 #include <trace/define_trace.h>
 

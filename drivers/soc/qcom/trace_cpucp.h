@@ -66,7 +66,7 @@ TRACE_EVENT(pdp1_log,
 #endif /* _TRACE_CPUCP_H */
 
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/soc/qcom
 
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE trace_cpucp

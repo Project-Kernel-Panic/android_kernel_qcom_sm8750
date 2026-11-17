@@ -6,7 +6,7 @@
 #undef TRACE_SYSTEM
 #define TRACE_SYSTEM gh_proxy_sched
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../../drivers/virt/gunyah
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE gh_proxy_sched_trace
 

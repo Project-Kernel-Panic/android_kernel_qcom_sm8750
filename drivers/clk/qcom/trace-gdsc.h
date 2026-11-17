@@ -41,7 +41,7 @@ TRACE_EVENT(gdsc_time,
 /* This part must be outside protection */
 
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/clk/qcom
 
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE trace-gdsc

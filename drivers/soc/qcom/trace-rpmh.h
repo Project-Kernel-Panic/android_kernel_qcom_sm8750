@@ -144,7 +144,7 @@ TRACE_EVENT(rpmh_drv_enable,
 #endif /* _TRACE_RPMH_H */
 
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/soc/qcom
 
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE trace-rpmh

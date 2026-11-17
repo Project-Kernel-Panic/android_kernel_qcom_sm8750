@@ -35,7 +35,7 @@ TRACE_EVENT(serial_info,
 
 /* This part must be outside protection */
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../../drivers/tty/serial
 #define TRACE_INCLUDE_FILE serial_trace
 #include <trace/define_trace.h>
 

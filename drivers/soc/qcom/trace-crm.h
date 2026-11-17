@@ -103,7 +103,7 @@ TRACE_EVENT(crm_switch_channel,
 #endif /* _TRACE_CRM_H */
 
 #undef TRACE_INCLUDE_PATH
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/soc/qcom
 
 #undef TRACE_INCLUDE_FILE
 #define TRACE_INCLUDE_FILE trace-crm
