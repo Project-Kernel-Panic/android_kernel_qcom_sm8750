@@ -414,6 +414,7 @@ config KASAN_SHADOW_OFFSET
 config UNWIND_TABLES
 	bool
 
+source "arch/arm64/Kconfig.projects"
 source "arch/arm64/Kconfig.platforms"
 
 menu "Kernel Features"

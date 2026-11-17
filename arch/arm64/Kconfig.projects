@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menu "Samsung Mobile Projects"
+
+config SEC_A52SXQ_PROJECT
+	bool "Samsung Galaxy A52s 5G (A52SXQ) Project"
+	depends on ARCH_YUPIK
+	default n
+	help
+	  Support for Samsung Galaxy A52s 5G (SM-A528B/N) platform.
+
+config MACH_A52SXQ_EUR_OPEN
+	bool "Samsung A52SXQ EUR OPEN"
+	depends on SEC_A52SXQ_PROJECT
+	default n
+	help
+	  Support for Samsung A52SXQ EUR OPEN device.
+
+config SEC_M52XQ_PROJECT
+	bool "Samsung Galaxy M52 5G (M52XQ) Project"
+	depends on ARCH_YUPIK
+	default n
+	help
+	  Support for Samsung Galaxy M52 5G (SM-M526B/BR) platform.
+
+config MACH_M52XQ_EUR_OPEN
+	bool "Samsung M52XQ EUR OPEN"
+	depends on SEC_M52XQ_PROJECT
+	default n
+	help
+	  Support for Samsung M52XQ EUR OPEN device.
+
+config SEC_A73XQ_PROJECT
+	bool "Samsung Galaxy A73 5G (A73XQ) Project"
+	depends on ARCH_YUPIK
+	default n
+	help
+	  Support for Samsung Galaxy A73 5G (SM-A736B) platform.
+
+config MACH_A73XQ_EUR_OPEN
+	bool "Samsung A73XQ EUR OPEN"
+	depends on SEC_A73XQ_PROJECT
+	default n
+	help
+	  Support for Samsung A73XQ EUR OPEN device.
+
+endmenu
