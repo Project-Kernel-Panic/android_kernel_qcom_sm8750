@@ -121,7 +121,17 @@ static inline void selinux_mark_initialized(void)
 	smp_store_release(&selinux_state.initialized, true);
 }
 
-#ifdef CONFIG_SECURITY_SELINUX_DEVELOP
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE
+static inline bool enforcing_enabled(void)
+{
+	return false;
+}
+
+static inline void enforcing_set(bool value)
+{
+	WRITE_ONCE(selinux_state.enforcing, false);
+}
+#elif defined(CONFIG_SECURITY_SELINUX_DEVELOP)
 static inline bool enforcing_enabled(void)
 {
 	return READ_ONCE(selinux_state.enforcing);

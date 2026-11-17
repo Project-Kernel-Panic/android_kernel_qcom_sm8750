@@ -111,7 +111,9 @@ struct selinux_state selinux_state;
 /* SECMARK reference count */
 static atomic_t selinux_secmark_refcount = ATOMIC_INIT(0);
 
-#ifdef CONFIG_SECURITY_SELINUX_DEVELOP
+#ifdef CONFIG_SECURITY_SELINUX_ALWAYS_PERMISSIVE
+static int selinux_enforcing_boot __initdata = 0;
+#elif defined(CONFIG_SECURITY_SELINUX_DEVELOP)
 static int selinux_enforcing_boot __initdata;
 
 static int __init enforcing_setup(char *str)
@@ -122,6 +124,14 @@ static int __init enforcing_setup(char *str)
 	return 1;
 }
 __setup("enforcing=", enforcing_setup);
+
+static int __init androidboot_selinux_setup(char *str)
+{
+	if (!strcmp(str, "permissive"))
+		selinux_enforcing_boot = 0;
+	return 1;
+}
+__setup("androidboot.selinux=", androidboot_selinux_setup);
 #else
 #define selinux_enforcing_boot 1
 #endif
