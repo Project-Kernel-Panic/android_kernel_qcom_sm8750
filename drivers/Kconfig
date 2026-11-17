@@ -245,4 +245,8 @@ source "drivers/cdx/Kconfig"
 
 source "drivers/battery/Kconfig"
 
+source "drivers/vibrator/Kconfig"
+
+source "drivers/samsung/Kconfig"
+
 endmenu

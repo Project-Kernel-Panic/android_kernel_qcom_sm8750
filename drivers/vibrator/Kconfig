@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0
+menu "Samsung Vibrator support"
+
+source "drivers/vibrator/common/Kconfig"
+source "drivers/vibrator/dc/Kconfig"
+
+endmenu

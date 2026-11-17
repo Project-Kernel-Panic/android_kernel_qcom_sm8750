@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Samsung Core Drivers
+#
+
+menu "Samsung Mobile Drivers"
+
+config DRV_SAMSUNG
+	bool "Samsung sec class/sysfs Feature"
+	default y
+	help
+	  Creates Samsung sysfs '/sys/class/sec' directory and device framework
+	  used by Samsung peripheral drivers (hall_ic, battery, vibrator, etc.).
+
+config SAMSUNG_PRODUCT_SHIP
+	bool "Samsung Product Shipping Configuration"
+	default y
+	help
+	  Enable production shipping configurations for Samsung devices.
+
+endmenu
