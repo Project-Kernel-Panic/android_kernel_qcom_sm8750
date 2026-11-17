@@ -150,3 +150,28 @@
 	remote-endpoint = <&panel0_in>;
 	data-lanes = <0 1 2 3>;
 };
+
+&i2c1 {
+	status = "okay";
+
+	cs35l41_bottom: cs35l41@40 {
+		compatible = "cirrus,cs35l41";
+		reg = <0x40>;
+		#sound-dai-cells = <1>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&amp_default>;
+		reset-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
+		status = "okay";
+	};
+
+	cs35l41_top: cs35l41@41 {
+		compatible = "cirrus,cs35l41";
+		reg = <0x41>;
+		#sound-dai-cells = <1>;
+		reset-gpios = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
+

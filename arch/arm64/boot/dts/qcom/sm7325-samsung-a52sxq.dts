@@ -150,3 +150,19 @@
 	remote-endpoint = <&panel0_in>;
 	data-lanes = <0 1 2 3>;
 };
+
+&i2c1 {
+	status = "okay";
+
+	tas256x: tas256x@4c {
+		compatible = "ti,tas2562";
+		reg = <0x4c>;
+		#sound-dai-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&amp_default>;
+		ti,reset-gpio = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+		ti,irq-gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
+

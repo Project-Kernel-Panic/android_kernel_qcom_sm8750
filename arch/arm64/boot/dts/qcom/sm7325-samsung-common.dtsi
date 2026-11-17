@@ -6,7 +6,10 @@
  * Common Device Tree include for Samsung SM7325 (Yupik) devices
  */
 
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/input/linux-event-codes.h>
 #include "sm7325.dtsi"
+#include "pmk8350.dtsi"
 #include "pm7325.dtsi"
 #include "pm8350.dtsi"
 #include "pm8350b.dtsi"
@@ -39,6 +42,45 @@
 			console-size = <0x40000>;
 			ftrace-size = <0x40000>;
 			pmsg-size = <0x40000>;
+		};
+	};
+
+	gpio_keys: gpio-keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&key_vol_up_default>;
+
+		key-volume-up {
+			label = "Volume Up";
+			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_VOLUMEUP>;
+			debounce-interval = <15>;
+			wakeup-source;
+		};
+	};
+
+	smd: samsung-mobile-device {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		dc_vibrator: dc-vibrator {
+			compatible = "samsung,dc_vibrator";
+			status = "okay";
+			dc_vib,motor_type = "COINDC";
+			dc_vib,gpio_en = <&tlmm 62 GPIO_ACTIVE_HIGH>;
+		};
+
+		hall_ic: hall-ic {
+			compatible = "hall_ic";
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&hall_ic_default>;
+
+			hall {
+				event = <0x15>;
+				gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
+			};
 		};
 	};
 };
@@ -280,6 +322,47 @@
 		input-enable;
 		bias-pull-down;
 	};
+
+	hall_ic_default: hall-ic-default-state {
+		pins = "gpio101";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-up;
+		input-enable;
+	};
+
+	dc_vib_default: dc-vib-default-state {
+		pins = "gpio62";
+		function = "gpio";
+		drive-strength = <8>;
+		output-low;
+	};
+
+	usbpd_int_active: usbpd-int-active-state {
+		pins = "gpio140";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-up;
+		input-enable;
+	};
+
+	amp_default: amp-default-state {
+		reset-pins {
+			pins = "gpio63";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-disable;
+			output-low;
+		};
+
+		irq-pins {
+			pins = "gpio55";
+			function = "gpio";
+			drive-strength = <2>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
 };
 
 &mdss {
@@ -293,4 +376,55 @@
 &mdss_dsi_phy {
 	status = "okay";
 	vdds-supply = <&vreg_l10c_0p8>;
+};
+
+&pmk8350_rtc {
+	status = "okay";
+};
+
+&pon_pwrkey {
+	status = "okay";
+};
+
+&pon_resin {
+	status = "okay";
+	linux,code = <KEY_VOLUMEDOWN>;
+};
+
+&pm7325_gpios {
+	key_vol_up_default: key-vol-up-state {
+		pins = "gpio6";
+		function = "normal";
+		input-enable;
+		bias-pull-up;
+		power-source = <0>;
+	};
+};
+
+&usb_1 {
+	status = "okay";
+};
+
+&usb_1_dwc3 {
+	dr_mode = "otg";
+	maximum-speed = "super-speed";
+};
+
+&usb_1_hsphy {
+	status = "okay";
+	vdda-pll-supply = <&vreg_l10c_0p8>;
+	vdda33-supply = <&vreg_l2b_3p0>;
+	vdda18-supply = <&vreg_l1c_1p8>;
+	qcom,hs-rise-fall-time-bp = <0>;
+	qcom,squelch-detector-bp = <(-2090)>;
+	qcom,hs-disconnect-bp = <1743>;
+	qcom,hs-amplitude-bp = <1780>;
+	qcom,hs-crossover-voltage-microvolt = <(-31000)>;
+	qcom,hs-output-impedance-micro-ohms = <2600000>;
+};
+
+&usb_1_qmpphy {
+	status = "okay";
+	vdda-phy-supply = <&vreg_l6b_1p2>;
+	vdda-pll-supply = <&vreg_l1b_0p8>;
 };

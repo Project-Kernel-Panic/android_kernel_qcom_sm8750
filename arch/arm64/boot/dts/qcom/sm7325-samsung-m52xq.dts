@@ -150,3 +150,18 @@
 	remote-endpoint = <&panel0_in>;
 	data-lanes = <0 1 2 3>;
 };
+
+&i2c1 {
+	status = "okay";
+
+	tfa98xx: tfa98xx@34 {
+		compatible = "tfa,tfa98xx";
+		reg = <0x34>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&amp_default>;
+		reset-gpio = <&tlmm 63 GPIO_ACTIVE_HIGH>;
+		irq-gpio = <&tlmm 55 GPIO_ACTIVE_HIGH>;
+		status = "okay";
+	};
+};
+
