@@ -323,6 +323,20 @@
 		bias-pull-down;
 	};
 
+	ts_reset_active: ts-reset-active-state {
+		pins = "gpio105";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-disable;
+	};
+
+	ts_reset_suspend: ts-reset-suspend-state {
+		pins = "gpio105";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-down;
+	};
+
 	hall_ic_default: hall-ic-default-state {
 		pins = "gpio101";
 		function = "gpio";

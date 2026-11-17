@@ -122,6 +122,19 @@
 		sec,firmware_name = "tsp_stm/fts5cu56a_a52sxq.bin";
 		status = "okay";
 	};
+
+	touchscreen@62 {
+		compatible = "novatek,NVT-ts";
+		reg = <0x62>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		novatek,irq-gpio = <&tlmm 81 GPIO_ACTIVE_LOW>;
+		novatek,reset-gpio = <&tlmm 105 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
 };
 
 &mdss_dsi {

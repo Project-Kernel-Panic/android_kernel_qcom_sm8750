@@ -122,6 +122,39 @@
 		sec,firmware_name = "tsp_stm/fts5cu56a_m52xq.bin";
 		status = "okay";
 	};
+
+	touchscreen@4b {
+		compatible = "synaptics,synaptics_ts";
+		reg = <0x4b>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-names = "on_state", "off_state";
+		pinctrl-0 = <&ts_int_active>;
+		pinctrl-1 = <&ts_int_suspend>;
+		tsp_avdd_ldo-supply = <&vreg_l7c_3p0>;
+		tsp_io_ldo-supply = <&vreg_l18b_1p8>;
+		sec,irq_gpio = <&tlmm 81 GPIO_ACTIVE_LOW>;
+		sec,project_name = "m52xq";
+		sec,bringup;
+		sec,ss_touch_num = <1>;
+		sec,area-size = <133 266 341>;
+		sec,max_coords = <4096 4096>;
+		sec,firmware_name = "tsp_synaptics/s3908_m52xq_sdc.bin";
+		status = "okay";
+	};
+
+	touchscreen@62 {
+		compatible = "novatek,NVT-ts";
+		reg = <0x62>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <81 IRQ_TYPE_LEVEL_LOW>;
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+		pinctrl-0 = <&ts_int_active &ts_reset_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		novatek,irq-gpio = <&tlmm 81 GPIO_ACTIVE_LOW>;
+		novatek,reset-gpio = <&tlmm 105 GPIO_ACTIVE_LOW>;
+		status = "okay";
+	};
 };
 
 &mdss_dsi {
