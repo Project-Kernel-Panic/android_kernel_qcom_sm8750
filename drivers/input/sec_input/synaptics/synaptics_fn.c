@@ -432,6 +432,7 @@ static void synaptics_ts_v1_dispatch_report(struct synaptics_ts_data *ts)
 			switch (tcm_msg->command) {
 			case SYNAPTICS_TS_CMD_RESET:
 				input_err(true, &ts->client->dev, "%s: Reset by CMD_RESET\n", __func__);
+				fallthrough;
 			case SYNAPTICS_TS_CMD_REBOOT_TO_ROM_BOOTLOADER:
 			case SYNAPTICS_TS_CMD_RUN_BOOTLOADER_FIRMWARE:
 			case SYNAPTICS_TS_CMD_RUN_APPLICATION_FIRMWARE:
@@ -804,6 +805,7 @@ retry:
 			break;
 		case STATUS_CONTINUED_READ:
 			input_err(true, &ts->client->dev, "%s:Out-of-sync continued read\n", __func__);
+			fallthrough;
 		case STATUS_IDLE:
 			tcm_msg->payload_length = 0;
 			retval = 0;

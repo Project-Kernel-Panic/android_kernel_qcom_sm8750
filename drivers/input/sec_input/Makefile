@@ -31,4 +31,5 @@ subdir-ccflags-$(CONFIG_SEC_KUNIT) += \
 	-Wno-format-zero-length
 
 obj-$(CONFIG_TOUCHSCREEN_STM) += stm/
+obj-$(CONFIG_TOUCHSCREEN_SYNAPTICS) += synaptics/
 

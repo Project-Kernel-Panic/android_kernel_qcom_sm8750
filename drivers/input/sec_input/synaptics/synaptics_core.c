@@ -1425,7 +1425,11 @@ void synaptics_ts_release(struct i2c_client *client)
 }
 
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)
+int synaptics_ts_probe(struct i2c_client *client)
+#else
 int synaptics_ts_probe(struct i2c_client *client, const struct i2c_device_id *id)
+#endif
 {
 	struct synaptics_ts_data *ts;
 	int ret = 0;
@@ -1479,7 +1483,11 @@ int synaptics_ts_probe(struct i2c_client *client, const struct i2c_device_id *id
 	return 0;
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 3, 0)
+void synaptics_ts_remove(struct i2c_client *client)
+#else
 int synaptics_ts_remove(struct i2c_client *client)
+#endif
 {
 	struct synaptics_ts_data *ts = i2c_get_clientdata(client);
 
@@ -1497,7 +1505,9 @@ int synaptics_ts_remove(struct i2c_client *client)
 	synaptics_ts_release(client);
 	synaptics_ts_remove_device(ts);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 3, 0)
 	return 0;
+#endif
 }
 
 void synaptics_ts_shutdown(struct i2c_client *client)

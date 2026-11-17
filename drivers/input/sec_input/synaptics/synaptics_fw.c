@@ -1511,6 +1511,7 @@ static int synaptics_ts_do_reflash_generic(struct synaptics_ts_data *ts,
 			input_err(true, &ts->client->dev, "%s: Fail to update application firmware\n", __func__);
 			goto exit;
 		}
+		fallthrough;
 	case UPDATE_CONFIG_ONLY:
 		block = &reflash_data->image_info.data[AREA_APP_CONFIG];
 

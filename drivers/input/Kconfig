@@ -216,6 +216,7 @@ endmenu
 
 source "drivers/input/sec_input/Kconfig"
 source "drivers/input/sec_input/stm/Kconfig"
+source "drivers/input/sec_input/synaptics/Kconfig"
 
 endmenu
 

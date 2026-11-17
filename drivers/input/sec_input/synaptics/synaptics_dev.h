@@ -1,6 +1,7 @@
 #ifndef _LINUX_SYNAPTICS_TS_H_
 #define _LINUX_SYNAPTICS_TS_H_
 
+#include <linux/version.h>
 #include <asm/unaligned.h>
 #include <linux/completion.h>
 #include <linux/ctype.h>
