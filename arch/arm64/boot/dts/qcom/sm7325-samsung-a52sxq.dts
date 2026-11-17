@@ -179,3 +179,21 @@
 	};
 };
 
+&soc {
+	fingerprint {
+		compatible = "etspi,et7xx";
+		pinctrl-names = "default";
+		pinctrl-0 = <&btp_rst_default>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		etspi-regulator = "VDD_BTP_3P3";
+		VDD_BTP_3P3-supply = <&vreg_l3c_3p0>;
+		etspi-sleepPin = <&tlmm 35 GPIO_ACTIVE_HIGH>;
+		etspi-chipid = "ET713";
+		etspi-modelinfo = "A528";
+		etspi-position = "11.81,-0.02,9.10,9.10,14.80,14.80,12.00,12.00,5.00";
+		etspi-rb = "547,-1,-1,FFFFFF";
+		status = "okay";
+	};
+};
+

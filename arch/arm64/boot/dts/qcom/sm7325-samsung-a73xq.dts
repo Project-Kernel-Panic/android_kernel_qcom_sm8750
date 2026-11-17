@@ -192,3 +192,21 @@
 	};
 };
 
+&soc {
+	fingerprint {
+		compatible = "goodix,gw9558x";
+		pinctrl-names = "default";
+		pinctrl-0 = <&btp_rst_default>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		goodix,btp-regulator = "VDD_BTP_3P3";
+		VDD_BTP_3P3-supply = <&vreg_l3c_3p0>;
+		goodix,gpio_reset = <&tlmm 35 GPIO_ACTIVE_HIGH>;
+		goodix,chip_id = "GW9558";
+		goodix,position = "10.38,0.00,9.10,9.10,14.80,14.80,12.00,12.00,5.00";
+		goodix,modelinfo = "A736";
+		goodix,rb = "800,235,-1,EFEFEF,999999";
+		status = "okay";
+	};
+};
+

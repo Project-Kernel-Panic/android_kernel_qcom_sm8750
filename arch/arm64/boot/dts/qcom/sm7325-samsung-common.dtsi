@@ -360,6 +360,22 @@
 		input-enable;
 	};
 
+	btp_rst_default: btp-rst-default-state {
+		pins = "gpio35";
+		function = "gpio";
+		drive-strength = <2>;
+		output-low;
+		bias-pull-down;
+	};
+
+	btp_irq_default: btp-irq-default-state {
+		pins = "gpio60";
+		function = "gpio";
+		drive-strength = <6>;
+		input-enable;
+		bias-pull-down;
+	};
+
 	amp_default: amp-default-state {
 		reset-pins {
 			pins = "gpio63";
