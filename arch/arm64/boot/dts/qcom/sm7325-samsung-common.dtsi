@@ -25,7 +25,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0x99c000";
+		bootargs = "console=null androidboot.hardware=qcom androidboot.selinux=permissive enforcing=0";
 		stdout-path = "serial0:115200n8";
 	};
 
