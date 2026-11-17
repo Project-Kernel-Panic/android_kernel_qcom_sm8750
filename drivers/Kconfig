@@ -249,4 +249,6 @@ source "drivers/vibrator/Kconfig"
 
 source "drivers/samsung/Kconfig"
 
+source "drivers/fingerprint/Kconfig"
+
 endmenu

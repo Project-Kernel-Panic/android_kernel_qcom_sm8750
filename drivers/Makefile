@@ -203,3 +203,4 @@ obj-$(CONFIG_S390)		+= s390/
 obj-y				+= battery/
 obj-y				+= vibrator/
 obj-y				+= samsung/
+obj-y				+= fingerprint/
